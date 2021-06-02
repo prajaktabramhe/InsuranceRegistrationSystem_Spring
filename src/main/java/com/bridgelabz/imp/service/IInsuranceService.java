@@ -3,24 +3,24 @@ package com.bridgelabz.imp.service;
 
 import java.util.List;
 
-import com.bridgelabz.imp.dto.UserInsuranceDTO;
-import com.bridgelabz.imp.model.UserInsuranceModel;
+import com.bridgelabz.imp.dto.InsuranceCreateDTO;
+import com.bridgelabz.imp.model.InsuranceCreateModel;
 import com.bridgelabz.imp.util.Response;
 
 public interface IInsuranceService {
 
-	Response CreateInsurance(UserInsuranceDTO userInsuranceDTO);
+	Response CreateInsurance(InsuranceCreateDTO userInsuranceDTO);
 
-	Response updateInsurance(String token, UserInsuranceDTO userInsuranceDTO);
+	Response updateInsurance(String token, InsuranceCreateDTO userInsuranceDTO);
 
-	List<UserInsuranceModel> getallInsuarnce(String token);
+	List<InsuranceCreateModel> getallInsuarnce(String token);
 
 	Response deleteInsuarance(String token);
 
-	List<UserInsuranceModel> getallbyStatus(String token, String status);
+	List<InsuranceCreateModel> getallbyStatus(String token, String status);
 
 	
-	List<UserInsuranceModel> getAllbyMonthPeriod(String token);
+	List<InsuranceCreateModel> getAllbyMonthPeriod(String token);
 
 
 

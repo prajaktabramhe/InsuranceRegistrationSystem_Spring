@@ -12,9 +12,9 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity 
-@Table(name="insurance_details")
+@Table(name="insurance_create")
 @Data
-public class UserInsuranceModel 
+public class InsuranceCreateModel 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,9 +27,9 @@ public class UserInsuranceModel
 	public LocalDateTime registereddate=LocalDateTime.now();
 	public LocalDateTime updateddate;
 	
-	public UserInsuranceModel() {}
+	public InsuranceCreateModel() {}
 
-	public UserInsuranceModel(Long id, int tokenId, int insuranceId, int monthPeriod, String status,
+	public InsuranceCreateModel(Long id, int tokenId, int insuranceId, int monthPeriod, String status,
 			LocalDateTime registereddate, LocalDateTime updateddate) {
 		super();
 		this.id = id;
