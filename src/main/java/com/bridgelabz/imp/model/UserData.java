@@ -17,13 +17,13 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity 
-@Table(name="userInsurance")
+@Table(name="user_registeration")
 @Data
 public class UserData 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+	@Column(name = "token_id")
 	public Long id;
 	public String fullname;
 	public String mobilenumber;
@@ -35,34 +35,34 @@ public class UserData
 	public LocalDateTime registereddate=LocalDateTime.now();
 	public LocalDateTime updateddate;
 	public String kyc;
+	public String permanentAddress;
+	public String temporaryAddress;
+//	@ElementCollection
+//	@CollectionTable(name = "UserRegister", joinColumns = @JoinColumn(name = "user_id"))
 
-	@ElementCollection
-	@CollectionTable(name = "UserRegister", joinColumns = @JoinColumn(name = "user_id"))
+//	@Column(name = "address")
 
-	@Column(name = "address")
-	private List<String> address;
 
 	public UserData() {}
 
-	public UserData(Long id, String fullname, String mobileNumber, int age, String occupation, String familyBackground,
-			String healthCondition, String vehicledata, LocalDateTime registeredDate, LocalDateTime updatedDate,
-			String kYC) {
+	public UserData(Long id, String fullname, String mobilenumber, int age, String occupation, String familybackground,
+			String healthcondition, String vehicledata, LocalDateTime registereddate, LocalDateTime updateddate,
+			String kyc, String permanentAddress, String temporaryAddress) {
 		super();
 		this.id = id;
 		this.fullname = fullname;
-		this.mobilenumber = mobileNumber;
+		this.mobilenumber = mobilenumber;
 		this.age = age;
 		this.occupation = occupation;
-		this.familybackground = familyBackground;
-		this.healthcondition = healthCondition;
+		this.familybackground = familybackground;
+		this.healthcondition = healthcondition;
 		this.vehicledata = vehicledata;
-		this.registereddate = registeredDate;
-		this.updateddate = updatedDate;
-		this.kyc = kYC;
+		this.registereddate = registereddate;
+		this.updateddate = updateddate;
+		this.kyc = kyc;
+		this.permanentAddress = permanentAddress;
+		this.temporaryAddress = temporaryAddress;
 	}
-
-
-
 
 
 }

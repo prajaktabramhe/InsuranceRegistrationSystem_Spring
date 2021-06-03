@@ -57,7 +57,8 @@ public class UserService implements IUserService
 			isContactPresent.get().setUpdateddate(LocalDateTime.now());
 			isContactPresent.get().setMobilenumber(userdto.getMobilenumber());
 			isContactPresent.get().setFamilybackground(userdto.getFamilybackground());
-			isContactPresent.get().setAddress(userdto.getAddress());
+			isContactPresent.get().setPermanentAddress(userdto.getPermanentAddress());
+			isContactPresent.get().setTemporaryAddress(userdto.getTemporaryAddress());
 			isContactPresent.get().setHealthcondition(userdto.getHealthcondition());
 			isContactPresent.get().setOccupation(userdto.getOccupation());
 			isContactPresent.get().setKyc(userdto.getKyc());

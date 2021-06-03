@@ -1,5 +1,7 @@
 package com.bridgelabz.imp.dto;
-import java.util.List;
+
+
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -15,8 +17,12 @@ public class UserDTO
 	@NotEmpty(message = "Mobile number cannot be null")
 	private String mobilenumber;
 	
-	@NotEmpty(message = "Address cannot be null")	
-	private List<String> address;
+
+	@NotBlank(message = "Permanent address cannot be blank")
+	public String permanentAddress;
+	
+	@NotBlank(message = "Temporary address cannot be blank")
+	public String temporaryAddress;
 	
 	@NotEmpty(message = "Vehicledata cannot be null")	
 	private String vehicledata;

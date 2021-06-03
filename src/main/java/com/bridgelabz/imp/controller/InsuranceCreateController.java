@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.bridgelabz.imp.dto.InsuranceCreateDTO;
-import com.bridgelabz.imp.model.UserData;
+
 import com.bridgelabz.imp.model.InsuranceCreateModel;
 import com.bridgelabz.imp.service.IInsuranceService;
 import com.bridgelabz.imp.util.Response;

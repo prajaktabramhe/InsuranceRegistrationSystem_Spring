@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
+
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.bridgelabz.imp.dto.InsuranceCreateDTO;
 import com.bridgelabz.imp.exception.UserException;
-import com.bridgelabz.imp.model.UserData;
+import com.bridgelabz.imp.model.InsuranceCategoryModel;
 import com.bridgelabz.imp.model.InsuranceCreateModel;
+import com.bridgelabz.imp.repository.InsuranceCategoryRepository;
 import com.bridgelabz.imp.repository.InsuranceCreateRepository;
 import com.bridgelabz.imp.util.Response;
 import com.bridgelabz.imp.util.TokenUtil;
@@ -28,6 +29,9 @@ public class InsuranceService  implements IInsuranceService
 	InsuranceCreateRepository userInsuranceRepository;
 	
 	@Autowired
+	InsuranceCategoryRepository userInsuranceCategory;
+	
+	@Autowired
 	ModelMapper modelmapper;
 	@Autowired
 	TokenUtil tokenutil;
@@ -35,17 +39,17 @@ public class InsuranceService  implements IInsuranceService
 	@Override
 	public Response CreateInsurance(InsuranceCreateDTO userInsuranceDTO) 
 	{
-		Optional<InsuranceCreateModel> isPresent=userInsuranceRepository.findByinsuranceId(userInsuranceDTO.getInsuranceId());
-   		if(isPresent.isPresent()) 
-		{
-			throw new UserException(400, "Insurance Already Added");
-		}else 
-		{
+//		Optional<InsuranceCategoryModel> isPresent=userInsuranceCategory.findByInsuranceCode(userInsuranceDTO.getInsuranceCode());
+//   		if(isPresent.isPresent()) 
+//		{
+//			throw new UserException(400, "Insurance Already Added");
+//		}else 
+//		{
 			InsuranceCreateModel user=modelmapper.map(userInsuranceDTO, InsuranceCreateModel.class);
 			userInsuranceRepository.save(user);
 			String token=tokenutil.createToken(user.getId());
 			return new Response(200, "Insurance Succefully Added", token);
-		}
+//		}
 	}
 
 	@Override
@@ -55,11 +59,11 @@ public class InsuranceService  implements IInsuranceService
 		Optional<InsuranceCreateModel>isInsurancePresent=userInsuranceRepository.findById(id);
 		if(isInsurancePresent.isPresent()) 
 		{
-			isInsurancePresent.get().setInsuranceId(userInsuranceDTO.getInsuranceId());
+			isInsurancePresent.get().setInsuranceid(userInsuranceDTO.getInsuranceid());
 			isInsurancePresent.get().setUpdateddate(LocalDateTime.now());
-			isInsurancePresent.get().setMonthPeriod(userInsuranceDTO.getMonthPeriod());
+			isInsurancePresent.get().setMonthperiod(userInsuranceDTO.getMonthPeriod());
 			isInsurancePresent.get().setStatus(userInsuranceDTO.getStatus());
-			isInsurancePresent.get().setTokenId(userInsuranceDTO.getTokenId());
+			isInsurancePresent.get().setTokenid(userInsuranceDTO.getTokenid());
 			
 			userInsuranceRepository.save(isInsurancePresent.get());
 			return new Response(200, "Insurance Succefully Updated", null);
@@ -106,7 +110,7 @@ public class InsuranceService  implements IInsuranceService
 		Optional<InsuranceCreateModel>isInsurancePresent=userInsuranceRepository.findById(id);
 		if(isInsurancePresent.isPresent()) 
 		{
-			List<InsuranceCreateModel> getallbyStatus = userInsuranceRepository.findBystatusStartsWith(status);
+			List<InsuranceCreateModel> getallbyStatus = userInsuranceRepository.findByStatusStartsWith(status);
 			return getallbyStatus;
 		}else 
 		{
