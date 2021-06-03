@@ -40,7 +40,7 @@ public class UserService implements IUserService
 		{
 			UserData user=modelmapper.map(userdto, UserData.class);
 			userrepository.save(user);
-			String token=tokenutil.createToken(user.getId());
+			String token=tokenutil.createToken(user.getUserid());
 			return new Response(200, "User Succefully Added", token);
 		}
 	}
@@ -48,8 +48,8 @@ public class UserService implements IUserService
 	@Override
 	public Response updateUser(String token, UserDTO userdto) 
 	{
-		Long id = tokenutil.decodeToken(token);
-		Optional<UserData>isContactPresent=userrepository.findById(id);
+		Long userid = tokenutil.decodeToken(token);
+		Optional<UserData>isContactPresent=userrepository.findById(userid);
 		if(isContactPresent.isPresent()) 
 		{
 			isContactPresent.get().setFullname(userdto.getFullname());
@@ -90,13 +90,6 @@ public class UserService implements IUserService
 	}
 
 	@Override
-	public List<UserData> getUser() 
-	{
-		List<UserData> getContact = userrepository.findAll();
-		return getContact;
-	}
-
-	@Override
 	public Response deleteUser(String token) 
 	{
 		long id = tokenutil.decodeToken(token);
@@ -111,4 +104,5 @@ public class UserService implements IUserService
 		}
 	}
 
+	
 }

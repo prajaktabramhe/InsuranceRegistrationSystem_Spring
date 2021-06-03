@@ -25,11 +25,11 @@ public class InsuranceCreateModel
 	public Long id;
 
 	@ElementCollection
-	@CollectionTable(name = "insurance_token",joinColumns = @JoinColumn(name = "id"))
+	@CollectionTable(name = "insurance_token",joinColumns = @JoinColumn(name = "userid"))
 	private List<Long> tokenid;
 	
 	@ElementCollection
-	@CollectionTable(name = "insurance_entity",joinColumns = @JoinColumn(name = "id"))
+	@CollectionTable(name = "insurance_entity",joinColumns = @JoinColumn(name = "categoryid"))
 	private List<Long> insuranceid;
 	
 	public int monthperiod;
@@ -50,6 +50,8 @@ public class InsuranceCreateModel
 		this.registereddate = registereddate;
 		this.updateddate = updateddate;
 	}
+	
+	
 
 
 	

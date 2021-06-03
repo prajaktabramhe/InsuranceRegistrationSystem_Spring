@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.bridgelabz.imp.dto.InsuranceCreateDTO;
 import com.bridgelabz.imp.model.InsuranceCreateModel;
+import com.bridgelabz.imp.util.InsuranceResponse;
 import com.bridgelabz.imp.util.Response;
 
 public interface IInsuranceService {
@@ -13,7 +14,7 @@ public interface IInsuranceService {
 
 	Response updateInsurance(String token, InsuranceCreateDTO userInsuranceDTO);
 
-	List<InsuranceCreateModel> getallInsuarnce(String token);
+//	List<InsuranceCreateModel> getallInsuarnce(String token);
 
 	Response deleteInsuarance(String token);
 
@@ -21,6 +22,9 @@ public interface IInsuranceService {
 
 	
 	List<InsuranceCreateModel> getAllbyMonthPeriod(String token);
+
+	
+	List<InsuranceResponse> getData(String token);
 
 
 

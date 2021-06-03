@@ -23,8 +23,8 @@ public class UserData
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "token_id")
-	public Long id;
+//	@Column(name = "token_id")
+	public Long userid;
 	public String fullname;
 	public String mobilenumber;
 	public int age;
@@ -45,11 +45,11 @@ public class UserData
 
 	public UserData() {}
 
-	public UserData(Long id, String fullname, String mobilenumber, int age, String occupation, String familybackground,
+	public UserData(Long userid, String fullname, String mobilenumber, int age, String occupation, String familybackground,
 			String healthcondition, String vehicledata, LocalDateTime registereddate, LocalDateTime updateddate,
 			String kyc, String permanentAddress, String temporaryAddress) {
 		super();
-		this.id = id;
+		this.userid = userid;
 		this.fullname = fullname;
 		this.mobilenumber = mobilenumber;
 		this.age = age;

@@ -14,10 +14,10 @@ public interface IInsuranceCategoryService {
 	Response addInsurance(@Valid InsuranceDTO insuarancedto);
 
 	Response updateInsuarance(String token, InsuranceDTO insuarancedto);
-
-	List<InsuranceCategoryModel> getallInsurance(String token);
-
+	
 	Response deleteInsuarance(String token);
+	
+	List<InsuranceCategoryModel> getallInsurance(String token);
 
 
 

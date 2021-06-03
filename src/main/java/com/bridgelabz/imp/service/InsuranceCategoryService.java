@@ -39,7 +39,7 @@ public class InsuranceCategoryService implements IInsuranceCategoryService
 		{
 			InsuranceCategoryModel user=modelmapper.map(insuarancedto, InsuranceCategoryModel.class);
 			insuranceCategoryRepository.save(user);
-			String token=tokenutil.createToken(user.getId());
+			String token=tokenutil.createToken(user.getCategoryid());
 			return new Response(200, "Insurance Succefully Added", token);
 		}
 	}

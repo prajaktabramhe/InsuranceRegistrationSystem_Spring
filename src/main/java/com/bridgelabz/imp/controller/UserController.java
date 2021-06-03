@@ -50,13 +50,6 @@ public class UserController
 		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
 	}
 
-	@GetMapping("/getContact")
-	ResponseEntity<List<?>> getUser()
-	{
-		List<UserData> response = userService.getUser();
-		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
-	}
-
 	@DeleteMapping("/deletcontact/{token}")
 	ResponseEntity<Response> deleteUser(@PathVariable String token)
 	{

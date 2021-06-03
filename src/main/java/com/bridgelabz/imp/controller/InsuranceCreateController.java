@@ -22,6 +22,7 @@ import com.bridgelabz.imp.dto.InsuranceCreateDTO;
 
 import com.bridgelabz.imp.model.InsuranceCreateModel;
 import com.bridgelabz.imp.service.IInsuranceService;
+import com.bridgelabz.imp.util.InsuranceResponse;
 import com.bridgelabz.imp.util.Response;
 
 
@@ -46,11 +47,11 @@ public class InsuranceCreateController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getallInsuarnce/{token}")
-	ResponseEntity<List<?>> getallInsuarnce(@PathVariable String token)
+	@GetMapping("/get/{token}")
+	ResponseEntity<List<?>> getAllData(@PathVariable String token)
 	{
-		List<InsuranceCreateModel> response = insuranceService.getallInsuarnce(token);
-		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
+		List<InsuranceResponse> response = insuranceService.getData(token);
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getallbyStatus/{token}")

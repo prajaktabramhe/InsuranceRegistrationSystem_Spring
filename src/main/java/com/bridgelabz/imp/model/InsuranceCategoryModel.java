@@ -17,7 +17,7 @@ public class InsuranceCategoryModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 //	@Column(name = "insuranceid")
-	public Long id;
+	public Long categoryid;
 	public String insurancename;
 	public String insuarncestatus;
 	public String insurancescheme;
@@ -27,10 +27,10 @@ public class InsuranceCategoryModel {
 	
 	public InsuranceCategoryModel() {}
 
-	public InsuranceCategoryModel(Long id, String insurancename, String insuarncestatus, String insurancescheme,
+	public InsuranceCategoryModel(Long categoryid, String insurancename, String insuarncestatus, String insurancescheme,
 			LocalDateTime registereddate, LocalDateTime updateddate, int insurancecode) {
 		super();
-		this.id = id;
+		this.categoryid = categoryid;
 		this.insurancename = insurancename;
 		this.insuarncestatus = insuarncestatus;
 		this.insurancescheme = insurancescheme;

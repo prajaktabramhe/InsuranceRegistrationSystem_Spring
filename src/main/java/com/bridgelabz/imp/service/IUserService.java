@@ -17,8 +17,6 @@ public interface IUserService {
 
 	List<UserData> getallUser(String token);
 
-	List<UserData> getUser();
-
 	Response deleteUser(String token);
 
 }
