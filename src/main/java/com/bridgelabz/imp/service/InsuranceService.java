@@ -74,19 +74,6 @@ public class InsuranceService  implements IInsuranceService
 	    }
 	}
 
-//	@Override
-//	public List<InsuranceCreateModel> getallInsuarnce(String token) {
-//		Long id = tokenutil.decodeToken(token);
-//		Optional<InsuranceCreateModel>isInsurancePresent=insuranceCreateRepository.findById(id);
-//		if(isInsurancePresent.isPresent()) 
-//		{
-//			List<InsuranceCreateModel> getallInsuarnce = insuranceCreateRepository.findAll();
-//			return getallInsuarnce;
-//		}else 
-//		{
-//			throw new UserException(400, "Token is not valid!");
-//		}
-//	}
 
 	@Override
 	public Response deleteInsuarance(String token) 
@@ -145,33 +132,7 @@ public class InsuranceService  implements IInsuranceService
 		UserData a =null;
 		InsuranceCategoryModel c =null;
 		List<InsuranceResponse> insuranceCreateList = new ArrayList<>();
-		
-		
-		//Start
-		/*
-		List<InsuranceCreateModel> insuranceCreateModelList =  insuranceCreateRepository.findAll();
-		if(!insuranceCreateModelList.isEmpty()) 
-		{
-			Optional<UserData> userModel = null;
-			Optional<InsuranceCategoryModel> insuranceCategoryModel = null;
-			for(InsuranceCreateModel b1 : insuranceCreateModelList) {
-				
-				for(Long insurancecreateModelObject : b1 .getTokenid()) {
-					 userModel = userrepository.findById(insurancecreateModelObject);
-				}
-				for(Long insurancecreateModelObject : b1 .getInsuranceid()) {
-					 insuranceCategoryModel = userInsuranceCategory.findById(insurancecreateModelObject);
-				}
-				a = userModel.get();
-				c = insuranceCategoryModel.get(); 
-				insuranceCreateList.add(new InsuranceResponse(a, c, id));
-			}
-		}
-		else 
-		{
-			throw new UserException(404,"No Data found in Insurance Create Table");
-		}*/
-		//end
+						
 		if(b.isPresent()) 
 		{
 			List<InsuranceCreateModel> blist =  insuranceCreateRepository.findAll();
