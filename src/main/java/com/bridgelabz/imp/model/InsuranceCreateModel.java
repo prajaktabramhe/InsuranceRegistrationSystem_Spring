@@ -34,7 +34,7 @@ public class InsuranceCreateModel
 	public String status;
 	public LocalDateTime registereddate=LocalDateTime.now();
 	public LocalDateTime updateddate;
-	public boolean claim;
+	public boolean claim=false;
 	
 	public InsuranceCreateModel() {}
 

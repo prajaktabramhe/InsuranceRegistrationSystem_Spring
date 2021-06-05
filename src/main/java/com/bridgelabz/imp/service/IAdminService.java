@@ -13,9 +13,17 @@ public interface IAdminService
 	List<UserData> getUsers(String token);
 	
 	// To get entire insurance data
-	List<InsuranceCategoryModel> getAllInsuranceData(String token);
+	List<InsuranceCategoryModel> getallinsurancecategory(String token);
 	
 	// To get entire data of users and insurances
 	List<InsuranceResponse> getallcreatedinsurance(String token);
+	
+	// To get user with specified health conditions
+	List<UserData> getUsersWithHealthCondition(String token, String healthcondition);
+	
+	// To get user with specified vehicle data
+	List<UserData> getUsersWithVehicleData(String token, String vehicledata);
 
+	List<InsuranceCategoryModel> getInsuranceForCategory(String token, String category);
+	
 }

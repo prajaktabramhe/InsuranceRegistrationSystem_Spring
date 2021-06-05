@@ -60,7 +60,7 @@ public class AdminService implements IAdminService
 	 * @return : List<InsuranceCategoryModel>
 	 */
 	@Override
-	public List<InsuranceCategoryModel> getAllInsuranceData(String token) 
+	public List<InsuranceCategoryModel> getallinsurancecategory(String token) 
 	{
 		Long userid = tokenutil.decodeToken(token);
 		Optional<InsuranceCategoryModel> isEntryPresent = userInsuranceCategory.findById(userid);
@@ -78,8 +78,8 @@ public class AdminService implements IAdminService
 	@Override
 	public List<InsuranceResponse> getallcreatedinsurance(String token) 
 	{
-		long user_id = tokenutil.decodeToken(token);
-		Optional<InsuranceCreateModel> isDataPresent = insuranceCreateRepository.findById(user_id);
+		long userid = tokenutil.decodeToken(token);
+		Optional<InsuranceCreateModel> isDataPresent = insuranceCreateRepository.findById(userid);
 
 		Long CreateId=0L;
 		Long insuranceId=0L;
@@ -120,7 +120,7 @@ public class AdminService implements IAdminService
 				{
 					throw new UserException(404,"Category Not found");
 				}
-				insuranceCreateList.add(new InsuranceResponse(userdata, insurancecategory, user_id));
+				insuranceCreateList.add(new InsuranceResponse(userdata, insurancecategory, userid));
 			} // Outside FOR					
 			return insuranceCreateList;
 		}
@@ -129,4 +129,53 @@ public class AdminService implements IAdminService
 			throw new UserException(404,"user Not found outside");
 		}
 	}
+
+	/**
+	 * To get users containing requested health condition
+	 */
+	@Override
+	public List<UserData> getUsersWithHealthCondition(String token, String healthcondition) {
+		long user_id = tokenutil.decodeToken(token);
+		Optional<UserData> isContactPresent = userrepository.findById(user_id);
+		if(isContactPresent.isPresent()) {
+			return userrepository.findByhealthcondition(healthcondition);
+		}
+		else {
+			log.error("User not found.");
+			throw new UserException(404,"User Not found");
+		}
+	}
+	
+	/**
+	 * To get users containing requested vehicle data
+	 */
+	@Override
+	public List<UserData> getUsersWithVehicleData(String token, String vehicledata) 
+	{
+		long user_id = tokenutil.decodeToken(token);
+		Optional<UserData> isContactPresent = userrepository.findById(user_id);
+		if(isContactPresent.isPresent()) {
+			return userrepository.findByVehicledata(vehicledata);
+		}
+		else {
+			log.error("User not found.");
+			throw new UserException(404,"User Not found");
+		}
+	}
+
+	@Override
+	public List<InsuranceCategoryModel> getInsuranceForCategory(String token, String category) {
+		long user_id = tokenutil.decodeToken(token);
+		Optional<InsuranceCategoryModel> isEntryPresent = userInsuranceCategory.findById(user_id);
+		if(isEntryPresent.isPresent()) {
+			log.debug("get");
+			List<InsuranceCategoryModel> getInsuranceData=userInsuranceCategory.findByInsurancename(category);
+			return getInsuranceData;
+		}
+		else {
+			log.error("Token not valid");
+			throw new UserException(400,"Token not valid");
+		}
+	}
+	
 }
