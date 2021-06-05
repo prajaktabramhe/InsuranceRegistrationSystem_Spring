@@ -99,6 +99,7 @@ public class InsuranceService  implements IInsuranceService
 		}
 	}
 
+	
 	/**
 	 * To get insurance data by status
 	 */
@@ -146,84 +147,71 @@ public class InsuranceService  implements IInsuranceService
 	/**
 	 * To get insurance data and user data 
 	 */
-
 	@Override
 	public List<InsuranceResponse> getData(String token) 
 	{
 		long user_id = tokenutil.decodeToken(token);
-		System.out.println(user_id + "check id");
-		Optional<InsuranceCreateModel> b = insuranceCreateRepository.findById(user_id);
+		Optional<InsuranceCreateModel> isDataPresent = insuranceCreateRepository.findById(user_id);
 
-		Long BId=0L;
+		Long CreateId=0L;
 		Long insuranceId=0L;
-		UserData a =null;
-		InsuranceCategoryModel c =null;
+		UserData userdata =null;
+		InsuranceCategoryModel insurancecategory =null;
 		List<InsuranceResponse> insuranceCreateList = new ArrayList<>();
 
-		if(b.isPresent()) 
+		if(isDataPresent.isPresent()) 
 		{
-			List<InsuranceCreateModel> blist =  insuranceCreateRepository.findAll();
-			for(InsuranceCreateModel b1 : blist) 
+			List<InsuranceCreateModel> createlistB =  insuranceCreateRepository.findAll();
+			for(InsuranceCreateModel crreatemodel : createlistB) 
 			{
-				//				System.out.println(b1);
-				//				System.out.println("Line 179");
-				//				System.out.println();
-				List<Long> b1Id = b1.getTokenid();
-				List<Long> insuranceIds = b1.getInsuranceid();
-				for(Long b1IdX : b1Id) 
+				List<Long> userIds  = crreatemodel.getTokenid();
+				List<Long> insuranceIds = crreatemodel.getInsuranceid();
+				for(Long createId : userIds ) 
 				{
-					BId=b1IdX;
-					//					System.out.println(BId);
-					//					System.out.println("Line 186");
+					CreateId=createId;
 				}
 				for(Long iid : insuranceIds) 
 				{
 					insuranceId=iid;
-					//					System.out.println(insuranceId);
-					//					System.out.println("Line 191");
 				}
-
-				Optional<UserData> a1 = userrepository.findById(BId);
-				//				System.out.println(a1);
-				if(a1.isPresent()) 
+				Optional<UserData> isUserPresent  = userrepository.findById(CreateId);
+				if(isUserPresent.isPresent()) 
 				{
-					a = a1.get();
+					userdata = isUserPresent.get();
 				}
 				else 
 				{
-
 					throw new UserException(404,"user Not found inside");
 				}
-				Optional<InsuranceCategoryModel> c1 = userInsuranceCategory.findById(insuranceId);
-				//				System.out.println(c1);
-				if(c1.isPresent()) {
-					c = c1.get();
+				Optional<InsuranceCategoryModel> isCategoryPresent  = userInsuranceCategory.findById(insuranceId);
+
+				if(isCategoryPresent.isPresent()) {
+					insurancecategory = isCategoryPresent.get();
 				}
 				else 
 				{
-
 					throw new UserException(404,"Category Not found");
 				}
-
-				insuranceCreateList.add(new InsuranceResponse(a, c, user_id));
+				insuranceCreateList.add(new InsuranceResponse(userdata, insurancecategory, user_id));
 			} // Outside FOR					
 			return insuranceCreateList;
 		}
 		else 
 		{
-
 			throw new UserException(404,"user Not found outside");
 		}
 	}
 
+
 	/**
 	 * To get all insurance data 
 	 */
-
 	@Override
-	public List<InsuranceCreateModel> getallInsuarnce(Long userid) {
+	public List<InsuranceCreateModel> getallInsuarnce(Long userid)
+	{
 		return insuranceCreateRepository.getByUserid(userid);
 	}
+
 
 	/**
 	 * To get insurance data by claim
@@ -255,7 +243,8 @@ public class InsuranceService  implements IInsuranceService
 	 * To update insurance data by claim/**
 	 */
 	@Override
-	public Response updateInsuranceClaim(String token, InsuranceCreateDTO userInsuranceDTO, boolean claim) {
+	public Response updateInsuranceClaim(String token, InsuranceCreateDTO userInsuranceDTO, boolean claim) 
+	{
 		Long id = tokenutil.decodeToken(token);
 		Optional<InsuranceCreateModel>isDataPresent =insuranceCreateRepository.findById(id);
 		if(isDataPresent .isPresent()) 
