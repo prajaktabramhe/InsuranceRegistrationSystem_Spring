@@ -34,11 +34,12 @@ public class InsuranceCreateModel
 	public String status;
 	public LocalDateTime registereddate=LocalDateTime.now();
 	public LocalDateTime updateddate;
+	public boolean claim;
 	
 	public InsuranceCreateModel() {}
 
 	public InsuranceCreateModel(Long id, List<Long> tokenid, List<Long> insuranceid, int monthperiod, String status,
-			LocalDateTime registereddate, LocalDateTime updateddate) {
+			LocalDateTime registereddate, LocalDateTime updateddate, boolean claim) {
 		super();
 		this.id = id;
 		this.tokenid = tokenid;
@@ -47,6 +48,7 @@ public class InsuranceCreateModel
 		this.status = status;
 		this.registereddate = registereddate;
 		this.updateddate = updateddate;
+		this.claim = claim;
 	}
 	
 	
