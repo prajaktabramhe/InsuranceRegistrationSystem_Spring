@@ -74,7 +74,7 @@ public class InsuranceCategoryController
 	/**
 	 * To delete insurance category
 	 * @param token
-	 * @return : ResponseEntity<>
+	 * @return : ResponseEntity<Response>
 	 */
 	@DeleteMapping("/deleteInsurance/{token}")
 	ResponseEntity<Response> deleteInsuarance(@PathVariable String token)

@@ -41,7 +41,6 @@ public class UserController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
-	
 	/**
 	 * To update user data
 	 * @param token :JWT data with userid
@@ -55,7 +54,6 @@ public class UserController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
-		
 	/**
 	 * To get all users
 	 * @param token :JWT data with userid

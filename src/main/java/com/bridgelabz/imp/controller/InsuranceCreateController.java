@@ -40,7 +40,7 @@ public class InsuranceCreateController
 	/** To add new insurance
 	 * To create Insurance create with tokenid and insuranceid
 	 * @param userInsuranceDTO :To get data from InsuranceCreateDTO
-	 * @return :ResponseEntity<>
+	 * @return :ResponseEntity<Response>
 	 */
 	@PostMapping("/addUserInsurance")
 	ResponseEntity<Response> CreateInsurance(@Valid @RequestBody InsuranceCreateDTO userInsuranceDTO)
@@ -52,7 +52,7 @@ public class InsuranceCreateController
 	/**
 	 * To update insurance data
 	 * @param userInsuranceDTO : To get data from InsuranceCreateDTO
-	 * @return : ResponseEntity<>
+	 * @return : ResponseEntity<Response>
 	 */
 	@PutMapping("/updateInsurance/{token}")
 	ResponseEntity<Response> updateInsurance(@PathVariable String token, @RequestBody InsuranceCreateDTO userInsuranceDTO)
@@ -64,6 +64,7 @@ public class InsuranceCreateController
 	/**
 	 * To get entire data of users and insurance
 	 *  @param token : JWT token with id
+	 *  return : ResponseEntity<List<?>>
 	 */
 	@GetMapping("/get/{token}")
 	ResponseEntity<List<?>> getAllData(@PathVariable String token)
@@ -101,7 +102,7 @@ public class InsuranceCreateController
 	/**
 	 * To delete insurance data
 	 * @param token : JWT token with id
-	 * @return : ResponseEntity<>
+	 * @return : ResponseEntity<Response>
 	 */
 	@DeleteMapping("/deleteInsuarance/{token}")
 	ResponseEntity<Response> deleteInsuarance(@PathVariable String token)
@@ -109,7 +110,10 @@ public class InsuranceCreateController
 		Response response=insuranceService.deleteInsuarance(token);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-
+	/**
+	 * To getallInsuranceforUser data
+	 * @return : ResponseEntity<>
+	 */
 	@GetMapping("/getallInsuranceforUser")
 	ResponseEntity getAllByUserId(@RequestHeader Long userid) {
 		return new ResponseEntity(insuranceService.getallInsuarnce(userid), HttpStatus.OK);
@@ -135,7 +139,7 @@ public class InsuranceCreateController
 	 * @param token
 	 * @param userInsuranceDTO : To get data from InsuranceCreateDTO
 	 * @param claim : True/False
-	 * @return
+	 * @return : ResponseEntity<Response>
 	 */
 	
 	@PutMapping("/updateClaim/{token}")
