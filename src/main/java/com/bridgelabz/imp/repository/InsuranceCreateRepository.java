@@ -1,11 +1,11 @@
 package com.bridgelabz.imp.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import com.bridgelabz.imp.model.InsuranceCategoryModel;
 import com.bridgelabz.imp.model.InsuranceCreateModel;
 
 public interface InsuranceCreateRepository extends JpaRepository<InsuranceCreateModel, Long>
@@ -13,8 +13,9 @@ public interface InsuranceCreateRepository extends JpaRepository<InsuranceCreate
 	
 		List<InsuranceCreateModel> findByStatusStartsWith(String status);
 
-//		List<InsuranceCreateModel> findByMonthPeriodEquals(String monthPeriod);
+		List<InsuranceCreateModel> findByMonthperiod(int monthperiod);
 
-//		Optional<InsuranceCategoryModel> findByInsuranceCode(int insurancecode);
-
+		@Query(value = "select * from insurance_create where id = (select userid from insurance_token where tokenid= :userid)",
+				nativeQuery = true)
+		List<InsuranceCreateModel> getByUserid(@Param("userid") Long userid);
 }

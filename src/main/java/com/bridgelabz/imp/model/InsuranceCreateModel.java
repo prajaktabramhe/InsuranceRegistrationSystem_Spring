@@ -4,11 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,13 +37,13 @@ public class InsuranceCreateModel
 	
 	public InsuranceCreateModel() {}
 
-	public InsuranceCreateModel(Long id, List<Long> tokenid, List<Long> insuranceid, int monthPeriod, String status,
+	public InsuranceCreateModel(Long id, List<Long> tokenid, List<Long> insuranceid, int monthperiod, String status,
 			LocalDateTime registereddate, LocalDateTime updateddate) {
 		super();
 		this.id = id;
 		this.tokenid = tokenid;
 		this.insuranceid = insuranceid;
-		this.monthperiod = monthPeriod;
+		this.monthperiod = monthperiod;
 		this.status = status;
 		this.registereddate = registereddate;
 		this.updateddate = updateddate;

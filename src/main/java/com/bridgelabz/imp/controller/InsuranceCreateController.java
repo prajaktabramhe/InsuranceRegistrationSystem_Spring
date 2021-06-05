@@ -13,26 +13,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.bridgelabz.imp.dto.InsuranceCreateDTO;
-
+import com.bridgelabz.imp.dto.InsuranceGetStatusDTO;
 import com.bridgelabz.imp.model.InsuranceCreateModel;
 import com.bridgelabz.imp.service.IInsuranceService;
 import com.bridgelabz.imp.util.InsuranceResponse;
 import com.bridgelabz.imp.util.Response;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @RestController
 @RequestMapping("/insuraceCreate")
+@Slf4j
 public class InsuranceCreateController 
 {
 	@Autowired
 	IInsuranceService insuranceService;
 	
+	/** To add new insurance
+	 * To create Insurance create with tokenid and insuranceid
+	 * @param userInsuranceDTO :To get data from InsuranceCreateDTO
+	 * @return :ResponseEntity<>
+	 */
 	@PostMapping("/addUserInsurance")
 	ResponseEntity<Response> CreateInsurance(@Valid @RequestBody InsuranceCreateDTO userInsuranceDTO)
 	{
@@ -40,6 +49,11 @@ public class InsuranceCreateController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	/**
+	 * To update insurance data
+	 * @param userInsuranceDTO : To get data from InsuranceCreateDTO
+	 * @return : ResponseEntity<>
+	 */
 	@PutMapping("/updateInsurance/{token}")
 	ResponseEntity<Response> updateInsurance(@PathVariable String token, @RequestBody InsuranceCreateDTO userInsuranceDTO)
 	{
@@ -47,6 +61,10 @@ public class InsuranceCreateController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	/**
+	 * To get entire data of users and insurance
+	 *  @param token : JWT token with id
+	 */
 	@GetMapping("/get/{token}")
 	ResponseEntity<List<?>> getAllData(@PathVariable String token)
 	{
@@ -54,25 +72,48 @@ public class InsuranceCreateController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	/**
+	 * To get insurance data by status
+	 * @param token : JWT token with id
+	 * @param status
+	 * @return : ResponseEntity<>
+	 */
 	@GetMapping("/getallbyStatus/{token}")
-	ResponseEntity<List<?>> getallbyStatus(@PathVariable String token,@RequestParam String status)
+	ResponseEntity getallbyStatus(@PathVariable String token,@RequestParam String status)
 	{
-		List<InsuranceCreateModel> response = insuranceService.getallbyStatus(token,status);
-		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
+		InsuranceGetStatusDTO response = insuranceService.getallbyStatus(token,status);
+		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	/**
+	 * To get insurance data by month period
+	 * @param token : JWT token with id
+	 * @param monthperiod :Month period of insurance
+	 * @return :ResponseEntity<List<?>>
+	 */
 	@GetMapping("/getAllbyMonthPeriod/{token}")
-	ResponseEntity<List<?>> getAllbyMonthPeriod(@PathVariable String token)
+	ResponseEntity<List<?>> getAllbyMonthPeriod(@PathVariable String token, @RequestHeader int monthperiod)
 	{
-		List<InsuranceCreateModel> response = insuranceService.getAllbyMonthPeriod(token);
+		List<InsuranceCreateModel> response = insuranceService.getAllbyMonthPeriod(token, monthperiod);
 		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
 	}
 	
+	/**
+	 * To delete insurance data
+	 * @param token : JWT token with id
+	 * @return : ResponseEntity<>
+	 */
 	@DeleteMapping("/deleteInsuarance/{token}")
 	ResponseEntity<Response> deleteInsuarance(@PathVariable String token)
 	{
 		Response response=insuranceService.deleteInsuarance(token);
 		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	@GetMapping("/findbyuserid")
+	ResponseEntity getAllByUserId(@RequestHeader Long userid) {
+		return new ResponseEntity(insuranceService.getallInsuarnce(userid), HttpStatus.OK);
+		
 	}
 
 }

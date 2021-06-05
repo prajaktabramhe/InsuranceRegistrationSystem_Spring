@@ -17,7 +17,7 @@ public class InsuranceCreateDTO {
 	private List<Long> insuranceid;
 	
 	@NotNull(message = "MonthPeriod cannot be null")	
-	private int monthPeriod;
+	private int monthperiod;
 	
 	@NotEmpty(message = "Status cannot be null")
 	private String status;

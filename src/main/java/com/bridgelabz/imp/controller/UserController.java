@@ -29,6 +29,11 @@ public class UserController
 	@Autowired
 	IUserService userService;
 
+	/**
+	 * To add new user
+	 * @param userdto : To get user data from UserDTO
+	 * @return: ResponseEntity<Response>
+	 */
 	@PostMapping("/addnewuser")
 	ResponseEntity<Response> createUser(@Valid @RequestBody UserDTO userdto)
 	{
@@ -36,6 +41,13 @@ public class UserController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
+	
+	/**
+	 * To update user data
+	 * @param token :JWT data with userid
+	 * @param userdto : To get user data from UserDTO
+	 * @return : ResponseEntity<Response>
+	 */
 	@PutMapping("/updateuser/{token}")
 	ResponseEntity<Response> updateUser(@PathVariable String token, @RequestBody UserDTO userdto)
 	{
@@ -43,6 +55,12 @@ public class UserController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 
+		
+	/**
+	 * To get all users
+	 * @param token :JWT data with userid
+	 * @return: ResponseEntity<Response>
+	 */
 	@GetMapping("/getallUser/{token}")
 	ResponseEntity<List<?>> getallUser(@PathVariable String token)
 	{
@@ -50,6 +68,11 @@ public class UserController
 		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
 	}
 
+	/**
+	 * To delete user
+	 * @param token : JWT data with userid
+	 * @return : ResponseEntity<Response>
+	 */
 	@DeleteMapping("/deletcontact/{token}")
 	ResponseEntity<Response> deleteUser(@PathVariable String token)
 	{

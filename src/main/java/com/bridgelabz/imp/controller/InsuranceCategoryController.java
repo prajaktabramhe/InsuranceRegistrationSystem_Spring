@@ -34,6 +34,11 @@ public class InsuranceCategoryController
 	@Autowired
 	IInsuranceCategoryService insuranceCategoryService;
 	
+	/**
+	 * To add insurance category
+	 * @param insuarancedto : To get insurance data from InsuranceDTO
+	 * @return : ResponseEntity<Response>
+	 */
 	@PostMapping("/addnewInsuranceCategory")
 	ResponseEntity<Response> addInsurance(@Valid @RequestBody InsuranceDTO insuarancedto)
 	{
@@ -41,6 +46,12 @@ public class InsuranceCategoryController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	/**
+	 * To update insurance category
+	 * @param token : JWT with insurance id
+	 * @param insuarancedto : To get insurance data from InsuranceDTO
+	 * @return : ResponseEntity<Response>
+	 */
 	@PutMapping("/updateInsuarance/{token}")
 	ResponseEntity<Response> updateInsuarance(@PathVariable String token, @RequestBody InsuranceDTO insuarancedto)
 	{
@@ -48,12 +59,23 @@ public class InsuranceCategoryController
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	/**
+	 * To get all insurance category
+	 * @param token : JWT with insurance id
+	 * @return : ResponseEntity<List<?>>
+	 */
 	@GetMapping("/getallInsurance/{token}")
 	ResponseEntity<List<?>> getallInsurance(@PathVariable String token)
 	{
 		List<InsuranceCategoryModel> response = insuranceCategoryService.getallInsurance(token);
 		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
 	}
+	
+	/**
+	 * To delete insurance category
+	 * @param token
+	 * @return : ResponseEntity<>
+	 */
 	@DeleteMapping("/deleteInsurance/{token}")
 	ResponseEntity<Response> deleteInsuarance(@PathVariable String token)
 	{
