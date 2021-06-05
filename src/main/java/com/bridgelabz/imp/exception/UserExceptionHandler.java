@@ -16,7 +16,7 @@ public class UserExceptionHandler
 	/**
 	 * Exception handler method to handle custom UserExceptionHandler
 	 * @param e
-	 * @return : ResponseEntity<>
+	 * @return : ResponseEntity<Response>
 	 */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Response> handleException(Exception e)
