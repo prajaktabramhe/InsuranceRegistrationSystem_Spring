@@ -9,7 +9,8 @@ import com.bridgelabz.imp.model.UserData;
 import lombok.Data;
 
 @Data
-public class InsuranceGetStatusDTO {
+public class InsuranceGetStatusDTO 
+{
 	public Long id;
 
 	public Optional<UserData> tokenid;
@@ -20,6 +21,7 @@ public class InsuranceGetStatusDTO {
 	public String status;
 	public LocalDateTime registereddate=LocalDateTime.now();
 	public LocalDateTime updateddate;
+	public boolean claim;
 
 	public InsuranceGetStatusDTO() {}
 }

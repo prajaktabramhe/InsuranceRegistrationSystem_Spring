@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 public class InsuranceDTO 
 {
-	
 	@NotEmpty(message = "insurancename cannot be null")
 	private String insurancename;
 		

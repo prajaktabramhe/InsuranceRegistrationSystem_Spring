@@ -8,7 +8,8 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class InsuranceCreateDTO {
+public class InsuranceCreateDTO 
+{
 	
 	@NotNull(message = "tokenId cannot be null")
 	private List<Long> tokenid;
@@ -21,6 +22,7 @@ public class InsuranceCreateDTO {
 	
 	@NotEmpty(message = "Status cannot be null")
 	private String status;
-	
-	
+		
+	@NotNull(message = "claim cannot be null")
+	private boolean claim;
 }

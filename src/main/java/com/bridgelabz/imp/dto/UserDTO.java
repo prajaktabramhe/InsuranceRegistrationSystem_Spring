@@ -17,7 +17,6 @@ public class UserDTO
 	@NotEmpty(message = "Mobile number cannot be null")
 	private String mobilenumber;
 	
-
 	@NotBlank(message = "Permanent address cannot be blank")
 	public String permanentAddress;
 	
@@ -41,7 +40,6 @@ public class UserDTO
 	
 	@NotEmpty(message = "kyc cannot be null")	
 	private String kyc;
-	
-	
+		
 }
 
