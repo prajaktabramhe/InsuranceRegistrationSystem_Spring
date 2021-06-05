@@ -18,4 +18,9 @@ public interface InsuranceCreateRepository extends JpaRepository<InsuranceCreate
 		@Query(value = "select * from insurance_create where id = (select userid from insurance_token where tokenid= :userid)",
 				nativeQuery = true)
 		List<InsuranceCreateModel> getByUserid(@Param("userid") Long userid);
+
+		List<InsuranceCreateModel> findByClaim(boolean claim);
+
+	
+		
 }

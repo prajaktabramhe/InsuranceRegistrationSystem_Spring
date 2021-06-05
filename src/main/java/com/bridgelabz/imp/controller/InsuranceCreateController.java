@@ -36,7 +36,7 @@ public class InsuranceCreateController
 {
 	@Autowired
 	IInsuranceService insuranceService;
-	
+
 	/** To add new insurance
 	 * To create Insurance create with tokenid and insuranceid
 	 * @param userInsuranceDTO :To get data from InsuranceCreateDTO
@@ -48,7 +48,7 @@ public class InsuranceCreateController
 		Response response=insuranceService.CreateInsurance(userInsuranceDTO);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
+
 	/**
 	 * To update insurance data
 	 * @param userInsuranceDTO : To get data from InsuranceCreateDTO
@@ -60,7 +60,7 @@ public class InsuranceCreateController
 		Response response=insuranceService.updateInsurance(token,userInsuranceDTO);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
+
 	/**
 	 * To get entire data of users and insurance
 	 *  @param token : JWT token with id
@@ -71,7 +71,7 @@ public class InsuranceCreateController
 		List<InsuranceResponse> response = insuranceService.getData(token);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
+
 	/**
 	 * To get insurance data by status
 	 * @param token : JWT token with id
@@ -84,7 +84,7 @@ public class InsuranceCreateController
 		InsuranceGetStatusDTO response = insuranceService.getallbyStatus(token,status);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
+
 	/**
 	 * To get insurance data by month period
 	 * @param token : JWT token with id
@@ -97,7 +97,7 @@ public class InsuranceCreateController
 		List<InsuranceCreateModel> response = insuranceService.getAllbyMonthPeriod(token, monthperiod);
 		return new ResponseEntity<List<?>>(response,HttpStatus.OK);
 	}
-	
+
 	/**
 	 * To delete insurance data
 	 * @param token : JWT token with id
@@ -109,11 +109,42 @@ public class InsuranceCreateController
 		Response response=insuranceService.deleteInsuarance(token);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	
-	@GetMapping("/findbyuserid")
+
+	@GetMapping("/getallInsuranceforUser")
 	ResponseEntity getAllByUserId(@RequestHeader Long userid) {
 		return new ResponseEntity(insuranceService.getallInsuarnce(userid), HttpStatus.OK);
-		
+
 	}
+	
+	/**
+	 * To get insurance data by claim
+	 * @param claim : True/False
+	 * @return : ResponseEntity<>
+	 */
+
+	@GetMapping("/getInsuranceByClaim/{token}")
+	ResponseEntity getInsuranceByClaim(@PathVariable String token,@RequestParam boolean claim)
+	{
+		log.debug("Get InsuranceByClaim By Claim");
+		InsuranceGetStatusDTO response = insuranceService.getInsuranceByClaim(token,claim);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	/**
+	 * To update new insurance claim 
+	 * @param token
+	 * @param userInsuranceDTO : To get data from InsuranceCreateDTO
+	 * @param claim : True/False
+	 * @return
+	 */
+	
+	@PutMapping("/updateClaim/{token}")
+	ResponseEntity<Response> updateInsuranceClaim(@PathVariable String token, @RequestBody InsuranceCreateDTO userInsuranceDTO, @RequestParam boolean claim)
+	{
+		log.debug("Update Insurance Claim: " + userInsuranceDTO);
+		Response response=insuranceService.updateInsuranceClaim(token,userInsuranceDTO,claim);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+
 
 }

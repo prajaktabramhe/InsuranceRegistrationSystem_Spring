@@ -1,19 +1,11 @@
 package com.bridgelabz.imp.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.Data;
 
 @Entity 
@@ -23,7 +15,7 @@ public class UserData
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-//	@Column(name = "token_id")
+
 	public Long userid;
 	public String fullname;
 	public String mobilenumber;
@@ -37,11 +29,6 @@ public class UserData
 	public String kyc;
 	public String permanentAddress;
 	public String temporaryAddress;
-//	@ElementCollection
-//	@CollectionTable(name = "UserRegister", joinColumns = @JoinColumn(name = "user_id"))
-
-//	@Column(name = "address")
-
 
 	public UserData() {}
 
@@ -63,6 +50,5 @@ public class UserData
 		this.permanentAddress = permanentAddress;
 		this.temporaryAddress = temporaryAddress;
 	}
-
 
 }

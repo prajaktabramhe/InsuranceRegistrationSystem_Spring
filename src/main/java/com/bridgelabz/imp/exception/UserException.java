@@ -24,11 +24,20 @@ public class UserException extends RuntimeException
 	private int StatusCode;
 	private String Statusmessage;
 	
+	/**
+	 * 
+	 * @return : error response
+	 */
 	public Response getErrorResponse() 
 	{
 		return getErrorResponse(Locale.getDefault());
 	}
 	
+	/**
+	 * 
+	 * @param locale
+	 * @return : err
+	 */
 	public Response getErrorResponse(Locale locale) 
 	{
 		ErrorResponse err = new ErrorResponse(StatusCode, Statusmessage, getStackTrace());

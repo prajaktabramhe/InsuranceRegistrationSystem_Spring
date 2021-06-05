@@ -13,6 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserExceptionHandler 
 {
+	/**
+	 * Exception handler method to handle custom UserExceptionHandler
+	 * @param e
+	 * @return : ResponseEntity<>
+	 */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Response> handleException(Exception e)
 	{

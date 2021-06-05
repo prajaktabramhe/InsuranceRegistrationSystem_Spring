@@ -25,7 +25,12 @@ public interface IInsuranceService {
 	
 	List<InsuranceCreateModel> getAllbyMonthPeriod(String token, int monthperiod);
 
-//	List<InsuranceCreateModel> getallInsuranceforUser(Long userid);
+	InsuranceGetStatusDTO getInsuranceByClaim(String token, boolean claim);
+
+	Response updateInsuranceClaim(String token, InsuranceCreateDTO userInsuranceDTO, boolean claim);
+
+
+
 
 
 

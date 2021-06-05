@@ -11,12 +11,12 @@ public class InsuranceResponse {
 	UserData userData;
 	InsuranceCategoryModel insuranceCategoryModel;
 	long id;
-	
+
 	public InsuranceResponse(UserData userData, InsuranceCategoryModel insuranceCategoryModel, long id) {
 		this.userData = userData;
 		this.insuranceCategoryModel = insuranceCategoryModel;
 		this.id = id;
 	}
-	
-	
+
+
 }

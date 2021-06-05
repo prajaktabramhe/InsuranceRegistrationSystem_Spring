@@ -8,7 +8,7 @@ public class Response
 	private Integer StatusCode;
 	private String Statusmessage;
 	private Object token;
-	
+
 	public Response(Integer statusCode, String statusmessage, Object token) {
 		super();
 		StatusCode = statusCode;

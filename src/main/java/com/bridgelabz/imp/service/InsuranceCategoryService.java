@@ -22,17 +22,17 @@ public class InsuranceCategoryService implements IInsuranceCategoryService
 
 	@Autowired
 	InsuranceCategoryRepository insuranceCategoryRepository;
-	
+
 	@Autowired
 	ModelMapper modelmapper;
-	
+
 	@Autowired
 	TokenUtil tokenutil;
 
 	@Override
 	public Response addInsurance(@Valid InsuranceDTO insuarancedto) {
 		Optional<InsuranceCategoryModel> isPresent=insuranceCategoryRepository.findByInsurancecode(insuarancedto.getInsurancecode());
-   		if(isPresent.isPresent()) 
+		if(isPresent.isPresent()) 
 		{
 			throw new UserException(400, "Insurance Already Added");
 		}else 
@@ -61,7 +61,7 @@ public class InsuranceCategoryService implements IInsuranceCategoryService
 		else 
 		{
 			throw new UserException(400, "Insurance is not saved!");
-	    }
+		}
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class InsuranceCategoryService implements IInsuranceCategoryService
 		}
 	}
 
-	
-	
+
+
 
 }
