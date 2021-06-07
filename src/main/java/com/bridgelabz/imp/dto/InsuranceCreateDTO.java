@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import lombok.Data;
 
 @Data
@@ -23,6 +25,6 @@ public class InsuranceCreateDTO
 	@NotEmpty(message = "Status cannot be null")
 	private String status;
 		
-	@NotNull(message = "claim cannot be null")
-	private boolean claim;
+	@NotNull(message = "Claim cannot be null")
+	private Boolean claim;
 }

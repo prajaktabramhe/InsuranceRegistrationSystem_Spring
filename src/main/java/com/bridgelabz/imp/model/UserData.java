@@ -1,5 +1,6 @@
 package com.bridgelabz.imp.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +25,8 @@ public class UserData
 	public String familybackground;
 	public String healthcondition;
 	public String vehicledata;
-	public LocalDateTime registereddate=LocalDateTime.now();
-	public LocalDateTime updateddate;
+	public LocalDate registereddate=LocalDate.now();
+	public LocalDate updateddate;
 	public String kyc;
 	public String permanentAddress;
 	public String temporaryAddress;
@@ -33,7 +34,7 @@ public class UserData
 	public UserData() {}
 
 	public UserData(Long userid, String fullname, String mobilenumber, int age, String occupation, String familybackground,
-			String healthcondition, String vehicledata, LocalDateTime registereddate, LocalDateTime updateddate,
+			String healthcondition, String vehicledata, LocalDate registereddate, LocalDate updateddate,
 			String kyc, String permanentAddress, String temporaryAddress) {
 		super();
 		this.userid = userid;

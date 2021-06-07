@@ -127,7 +127,7 @@ public class InsuranceCreateController
 	 */
 
 	@GetMapping("/getInsuranceByClaim/{token}")
-	ResponseEntity getInsuranceByClaim(@PathVariable String token,@RequestParam boolean claim)
+	ResponseEntity getInsuranceByClaim(@PathVariable String token,@RequestParam Boolean claim)
 	{
 		log.debug("Get InsuranceByClaim By Claim");
 		InsuranceGetStatusDTO response = insuranceService.getInsuranceByClaim(token,claim);
@@ -143,10 +143,10 @@ public class InsuranceCreateController
 	 */
 	
 	@PutMapping("/updateClaim/{token}")
-	ResponseEntity<Response> updateInsuranceClaim(@PathVariable String token, @RequestBody InsuranceCreateDTO userInsuranceDTO, @RequestParam boolean claim)
+	ResponseEntity<Response> updateInsuranceClaim(@PathVariable String token, @RequestParam boolean claim)
 	{
-		log.debug("Update Insurance Claim: " + userInsuranceDTO);
-		Response response=insuranceService.updateInsuranceClaim(token,userInsuranceDTO,claim);
+//		log.debug("Update Insurance Claim: " + userInsuranceDTO);
+		Response response=insuranceService.updateInsuranceClaim(token,claim);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 

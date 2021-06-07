@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.bridgelabz.imp.dto.DateSearchDTO;
 import com.bridgelabz.imp.exception.UserException;
 import com.bridgelabz.imp.model.InsuranceCategoryModel;
 import com.bridgelabz.imp.model.InsuranceCreateModel;
@@ -120,7 +122,7 @@ public class AdminService implements IAdminService
 				{
 					throw new UserException(404,"Category Not found");
 				}
-				insuranceCreateList.add(new InsuranceResponse(userdata, insurancecategory, userid));
+				insuranceCreateList.add(new InsuranceResponse(userdata, insurancecategory, isDataPresent.get()));
 			} // Outside FOR					
 			return insuranceCreateList;
 		}
@@ -163,6 +165,9 @@ public class AdminService implements IAdminService
 		}
 	}
 
+	/**
+	 * To get insurance data 
+	 */
 	@Override
 	public List<InsuranceCategoryModel> getInsuranceForCategory(String token, String category) {
 		long user_id = tokenutil.decodeToken(token);
@@ -175,6 +180,38 @@ public class AdminService implements IAdminService
 		else {
 			log.error("Token not valid");
 			throw new UserException(400,"Token not valid");
+		}
+	}
+
+	/**
+	 * To get users details who registered between mentioned dates
+	 */
+	@Override
+	public List<UserData> getalluserbetweenregistereddate(String token, DateSearchDTO dateSearchDTO) {
+		long user_id = tokenutil.decodeToken(token);
+		Optional<UserData> isContactPresent = userrepository.findById(user_id);
+		if(isContactPresent.isPresent()) {
+			return userrepository.findByRegistereddateBetween(dateSearchDTO.getStartDate(),dateSearchDTO.getEndDate());
+		}
+		else {
+			log.error("User not found.");
+			throw new UserException(404,"User Not found");
+		}
+	}
+
+	/**
+	 * To get insurance details who registered between mentioned dates
+	 */
+	@Override
+	public List<InsuranceCategoryModel> allInsuranceBetweenDates(String token, DateSearchDTO dateSearchDTO) {
+		long user_id = tokenutil.decodeToken(token);
+		Optional<InsuranceCategoryModel> isContactPresent = userInsuranceCategory.findById(user_id);
+		if(isContactPresent.isPresent()) {
+			return userInsuranceCategory.findByRegistereddateBetween(dateSearchDTO.getStartDate(),dateSearchDTO.getEndDate());
+		}
+		else {
+			log.error("User not found.");
+			throw new UserException(404,"User Not found");
 		}
 	}
 	

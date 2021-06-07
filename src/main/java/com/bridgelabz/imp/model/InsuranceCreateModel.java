@@ -11,6 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import jdk.jfr.BooleanFlag;
+import lombok.Builder.Default;
 import lombok.Data;
 
 @Entity 
@@ -34,7 +39,7 @@ public class InsuranceCreateModel
 	public String status;
 	public LocalDateTime registereddate=LocalDateTime.now();
 	public LocalDateTime updateddate;
-	public boolean claim=false;
+	public Boolean claim = false;
 	
 	public InsuranceCreateModel() {}
 

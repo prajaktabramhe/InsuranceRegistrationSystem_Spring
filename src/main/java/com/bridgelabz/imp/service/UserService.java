@@ -1,5 +1,6 @@
 package com.bridgelabz.imp.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -61,7 +62,7 @@ public class UserService implements IUserService
 		{
 			isContactPresent.get().setFullname(userdto.getFullname());
 			isContactPresent.get().setAge(userdto.getAge());
-			isContactPresent.get().setUpdateddate(LocalDateTime.now());
+			isContactPresent.get().setUpdateddate(LocalDate.now());
 			isContactPresent.get().setMobilenumber(userdto.getMobilenumber());
 			isContactPresent.get().setFamilybackground(userdto.getFamilybackground());
 			isContactPresent.get().setPermanentAddress(userdto.getPermanentAddress());

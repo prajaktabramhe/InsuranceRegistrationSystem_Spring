@@ -7,10 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bridgelabz.imp.dto.DateSearchDTO;
 import com.bridgelabz.imp.model.InsuranceCategoryModel;
 import com.bridgelabz.imp.model.UserData;
 import com.bridgelabz.imp.service.IAdminService;
@@ -94,6 +97,26 @@ public class AdminController
 	public ResponseEntity<List<?>> getInsuranceForCategory(@PathVariable String token,@RequestParam("category") String category){
 		log.debug("Get Insurance data for category: " + category);
 		List<InsuranceCategoryModel> response = adminService.getInsuranceForCategory(token,category);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	/**
+	 * To get all user Register between start and end dates mentioned
+	 */
+	@PostMapping("/getalluserbetweenregistereddate/{token}")
+	public ResponseEntity<List<?>> getalluserbetweenregistereddate(@PathVariable String token,@RequestBody DateSearchDTO  dateSearchDTO){
+		log.debug("Get all user between start date and end date");
+		List<UserData> response = adminService.getalluserbetweenregistereddate(token,dateSearchDTO);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+	}
+	
+	/**
+	 * To get all insurance category between start and end dates mentioned
+	 */
+	@PostMapping("/getallInsuranceBetweenDates/{token}")
+	public ResponseEntity<List<?>> allInsuranceBetweenDates(@PathVariable String token,@RequestBody DateSearchDTO dateSearchDTO){
+		log.debug("Get user between start date and end date");
+		List<InsuranceCategoryModel> response = adminService.allInsuranceBetweenDates(token,dateSearchDTO);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 }

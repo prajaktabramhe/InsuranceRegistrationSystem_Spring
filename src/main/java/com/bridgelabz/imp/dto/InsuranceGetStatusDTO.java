@@ -19,7 +19,7 @@ public class InsuranceGetStatusDTO
 	
 	public int monthperiod;
 	public String status;
-	public LocalDateTime registereddate=LocalDateTime.now();
+	public LocalDateTime registereddate;
 	public LocalDateTime updateddate;
 	public boolean claim;
 

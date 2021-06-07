@@ -2,6 +2,7 @@ package com.bridgelabz.imp.service;
 
 import java.util.List;
 
+import com.bridgelabz.imp.dto.DateSearchDTO;
 import com.bridgelabz.imp.model.InsuranceCategoryModel;
 import com.bridgelabz.imp.model.UserData;
 import com.bridgelabz.imp.util.InsuranceResponse;
@@ -24,6 +25,13 @@ public interface IAdminService
 	// To get user with specified vehicle data
 	List<UserData> getUsersWithVehicleData(String token, String vehicledata);
 
+	// To get Insurance data with specified category
 	List<InsuranceCategoryModel> getInsuranceForCategory(String token, String category);
+	
+	// To get users between mentioned dates
+	List<UserData> getalluserbetweenregistereddate(String token, DateSearchDTO dateSearchDTO);
+
+	// To get insurance details between mentioned dates
+	List<InsuranceCategoryModel> allInsuranceBetweenDates(String token, DateSearchDTO dateSearchDTO);
 	
 }
