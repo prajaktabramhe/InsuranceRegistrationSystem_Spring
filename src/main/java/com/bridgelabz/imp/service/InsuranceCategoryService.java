@@ -1,5 +1,6 @@
 package com.bridgelabz.imp.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +54,7 @@ public class InsuranceCategoryService implements IInsuranceCategoryService
 			isContactPresent.get().setInsurancename(insuarancedto.getInsurancename());
 			isContactPresent.get().setInsurancescheme(insuarancedto.getInsurancescheme());
 			isContactPresent.get().setInsuarncestatus(insuarancedto.getInsuarncestatus());
-			isContactPresent.get().setUpdateddate(LocalDateTime.now());
+			isContactPresent.get().setUpdateddate(LocalDate.now());
 			isContactPresent.get().setInsurancecode(insuarancedto.getInsurancecode());
 			insuranceCategoryRepository.save(isContactPresent.get());
 			return new Response(200, "Insurance Succefully Updated", null);
